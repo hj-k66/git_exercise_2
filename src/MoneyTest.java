@@ -6,17 +6,23 @@ public class MoneyTest {
         System.out.print("금액을 넣으세요:");
         int money = sc.nextInt();
 
+        System.out.printf("50000원권 %d장, 나머지 : %d\n", (money/50000), money%50000);
+        money  = money % 50000;
+        System.out.printf("10000원권 %d장, 나머지 : %d\n", (money/10000), money%10000);
+        money  = money % 10000;
+        System.out.printf("5000원권 %d장, 나머지 : %d\n", (money/5000), money%5000);
+        money  = money % 5000;
+        System.out.printf("1000원권 %d장, 나머지 : %d\n", (money/1000), money%1000);
+        money  = money % 1000;
+        System.out.printf("500원권 %d개, 나머지 : %d\n", (money/500), money%500);
+        money  = money % 500;
+        System.out.printf("100원권 %d개, 나머지 : %d\n", (money/100), money%100);
+        money  = money % 100;
+        System.out.printf("50원권 %d개, 나머지 : %d\n", (money/50), money%50);
+        money  = money % 50;
+        System.out.printf("10원권 %d개, 나머지 : %d\n", (money/10), money%10);
+        money  = money % 10;
 
-        int curr50000 = 50000;
-        int curr10000 = 10000;
-        int curr5000 = 5000;
-        int curr1000 = 1000;
-        int curr500 = 500;
 
-        System.out.printf("50000원권 %d장, 나머지 : %d\n", (money/curr50000), money%curr50000);
-        System.out.printf("10000원권 %d장, 나머지 : %d\n", (money/curr10000), money%curr10000);
-        System.out.printf("5000원권 %d장, 나머지 : %d\n", (money/curr5000), money%curr5000);
-        System.out.printf("1000원권 %d장, 나머지 : %d\n", (money/curr1000), money%curr1000);
-        System.out.printf("500원권 %d장, 나머지 : %d\n", (money/curr500), money%curr500);
     }
 }
