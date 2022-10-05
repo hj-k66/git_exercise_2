@@ -2,7 +2,7 @@ package Class_1005;
 
 public class CalculatorMain {
     public static void main(String[] args) {
-        Calculator calculator = new Calculator(10,20);
+        RandomCalculator calculator = new RandomCalculator(10);
         System.out.println(calculator.plus());
         System.out.println(calculator.minus());
         System.out.println(calculator.multiple());
