@@ -20,7 +20,7 @@ public class MapAlphabet {
         for(int j = 0; j < addr.length(); j++) {
             char currChar = addr.charAt(j);
             //알파벳인지 판단
-            if((currChar >=65 && currChar <=90) || (currChar>=97 && currChar<=122)){
+            if(isAlphabet(currChar)){
                 char currUpper = Character.toUpperCase(currChar);
                 int currcnt = alphabetCnt.get(currUpper);
                 alphabetCnt.put(currUpper,++currcnt);
@@ -29,7 +29,13 @@ public class MapAlphabet {
 
         //알파벳별 개수 출력
         System.out.println(alphabetCnt);
-
-
+    }
+    //알파벳인지 판단하는 함수
+    static boolean isAlphabet(char currChar){
+        if((currChar >=65 && currChar <=90) || (currChar>=97 && currChar<=122)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
