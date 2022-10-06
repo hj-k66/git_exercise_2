@@ -7,5 +7,6 @@ public class C_1028 {
         Scanner sc = new Scanner(System.in);
         long num = sc.nextLong();
         System.out.println(num);
+
     }
 }
