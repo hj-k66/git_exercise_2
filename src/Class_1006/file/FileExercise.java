@@ -12,3 +12,13 @@ public class FileExercise {
         }
     }
 }
+/*
+    [실행결과]
+    .\.git
+    .\.gitignore
+    .\.idea
+    .\hello.txt
+    .\JavaProject.iml
+    .\out
+    .\src
+*/
