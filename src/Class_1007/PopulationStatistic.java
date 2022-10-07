@@ -101,17 +101,37 @@ public class PopulationStatistic {
         }
         return movecntMap;
     }
+
+    //시도코드를 heatmap index로 맵핑
+    //key : 시도코드, value : index
+    public Map<String,String> getHeatmapIdx(String filename) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        Map<String,String> map = new HashMap<>();
+        String str;
+        while((str= reader.readLine())!=null){
+            String[] line = str.split(",");
+            map.put(line[1],line[0]);
+        }
+        return map;
+    }
+
     public static void main(String[] args) throws IOException {
         String address = "./from_to.txt";
         PopulationStatistic populationStatistic = new PopulationStatistic();
         List<PopulationMove> pml = populationStatistic.readByLine(address);
 
         Map<String, Integer> moveCntMap = populationStatistic.getMoveCntMap(pml);
-        String targetFile = "./each_sido_cnt.txt";
+        Map<String, String> heatmapIdxmap = populationStatistic.getHeatmapIdx("./sidocode.txt");
+
+        String targetFile = "./for_heatmap.txt";
         populationStatistic.createAFile(targetFile);
         List<String> cntResult = new ArrayList<>();
+
+        //전입-전출 count한 결과를 heatmap 형식으로 mapping하여 파일로 저장
         for(String key :moveCntMap.keySet()){
-            String s = String.format("key:%s value:%d\n", key, moveCntMap.get(key));
+            String[] fromto = key.split(",");
+            //heatmap 형식 : [전입시도 idx, 전출시도 idx, count]로 매핑해서 저장
+            String s = String.format("[%s, %s, %d]\n", heatmapIdxmap.get(fromto[0]),heatmapIdxmap.get(fromto[1]), moveCntMap.get(key));
             cntResult.add(s);
         }
         populationStatistic.write(cntResult, targetFile);
