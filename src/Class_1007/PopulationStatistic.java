@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PopulationStatistic {
     public void readByChar(String filename)throws  IOException{
@@ -23,14 +25,20 @@ public class PopulationStatistic {
 
     }
 
-    public void readByLine(String filename) throws  IOException{
+
+    //파일의 모든 라인을 읽어 파싱
+    //파싱한 결과 list로 return
+    public List<PopulationMove> readByLine(String filename) throws  IOException{
+        List<PopulationMove> pmlist = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         String str;
         while((str= reader.readLine())!=null){
-            System.out.println(str);
+//            System.out.println(str);
+            PopulationMove populationMove = parse(str);
+            pmlist.add(populationMove);
         }
         reader.close();
-
+        return pmlist;
     }
 
     public void readByLine2(String filename) {
@@ -60,11 +68,12 @@ public class PopulationStatistic {
     public static void main(String[] args) throws IOException {
         String address = "C:\\2021_인구관련연간자료_20221007_07638.csv";
         PopulationStatistic populationStatistic = new PopulationStatistic();
+        List<PopulationMove> pml = populationStatistic.readByLine(address);
 
-        String data = populationStatistic.readOneLine(address);
-        PopulationMove populationMove = populationStatistic.parse(data);
-        System.out.println("ToSido = " + populationMove.getToSido());
-        System.out.println("FromSido = " + populationMove.getFromSido());
+        for (PopulationMove pm: pml){
+            System.out.printf("전입:%s, 전출:%s\n", pm.getToSido(), pm.getFromSido());
+        }
+        System.out.println(pml.size());
 
     }
 }
