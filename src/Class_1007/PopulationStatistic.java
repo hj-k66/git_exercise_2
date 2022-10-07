@@ -95,15 +95,10 @@ public class PopulationStatistic {
         PopulationStatistic populationStatistic = new PopulationStatistic();
         List<PopulationMove> pml = populationStatistic.readByLine(address);
 
-//        populationStatistic.createAFile("./from_to.txt");
-        List<String> strlist = new ArrayList<>();
         for (PopulationMove pm: pml){
-//            System.out.printf("전입:%s, 전출:%s\n", pm.getToSido(), pm.getFromSido());
-            String fromTo = populationStatistic.fromToString(pm);
-            strlist.add(fromTo);
+            System.out.printf("전입:%s, 전출:%s\n", pm.getToSido(), pm.getFromSido());
         }
 
-        populationStatistic.write(strlist, "./from_to.txt");
 
     }
 }
