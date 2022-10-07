@@ -5,7 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PopulationStatistic {
     public void readByChar(String filename)throws  IOException{
@@ -91,14 +93,17 @@ public class PopulationStatistic {
         return populationMove.getFromSido() + "," + populationMove.getToSido()+"\n";
     }
     public static void main(String[] args) throws IOException {
-        String address = "C:\\2021_인구관련연간자료_20221007_07638.csv";
+        String address = "./from_to.txt";
         PopulationStatistic populationStatistic = new PopulationStatistic();
         List<PopulationMove> pml = populationStatistic.readByLine(address);
 
+        Set<Integer> sidoCodes = new HashSet<>();   //사용된 시도코드
         for (PopulationMove pm: pml){
-            System.out.printf("전입:%s, 전출:%s\n", pm.getToSido(), pm.getFromSido());
+//            System.out.printf("전입:%s, 전출:%s\n", pm.getToSido(), pm.getFromSido());
+            sidoCodes.add(pm.getFromSido());
+            sidoCodes.add(pm.getToSido());
         }
-
+        System.out.println("sidoCodes = " + sidoCodes);
 
     }
 }
