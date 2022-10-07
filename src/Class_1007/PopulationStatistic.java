@@ -45,9 +45,10 @@ public class PopulationStatistic {
         }
     }
     public PopulationMove parse(String data){
+        //전입 : to, 전출: from
         String[] splitData = data.split(",");
-        int fromSido = Integer.valueOf(splitData[0]);
-        int toSido = Integer.valueOf(splitData[6]);
+        int toSido = Integer.valueOf(splitData[0]);
+        int fromSido = Integer.valueOf(splitData[6]);
         return new PopulationMove(fromSido, toSido);
     }
 
