@@ -4,10 +4,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PopulationStatistic {
     public void readByChar(String filename)throws  IOException{
@@ -92,18 +89,31 @@ public class PopulationStatistic {
     public String fromToString(PopulationMove populationMove){
         return populationMove.getFromSido() + "," + populationMove.getToSido()+"\n";
     }
+
+    public Map<String, Integer> getMoveCntMap(List<PopulationMove> pml){
+        Map<String, Integer> movecntMap = new HashMap<>();
+        for(PopulationMove pm : pml){
+            String key = pm.getFromSido() + "," + pm.getToSido();
+            if(movecntMap.get(key) ==null){
+                movecntMap.put(key,1);
+            }
+            movecntMap.put(key, movecntMap.get(key)+1);
+        }
+        return movecntMap;
+    }
     public static void main(String[] args) throws IOException {
         String address = "./from_to.txt";
         PopulationStatistic populationStatistic = new PopulationStatistic();
         List<PopulationMove> pml = populationStatistic.readByLine(address);
 
-        Set<Integer> sidoCodes = new HashSet<>();   //사용된 시도코드
-        for (PopulationMove pm: pml){
-//            System.out.printf("전입:%s, 전출:%s\n", pm.getToSido(), pm.getFromSido());
-            sidoCodes.add(pm.getFromSido());
-            sidoCodes.add(pm.getToSido());
+        Map<String, Integer> moveCntMap = populationStatistic.getMoveCntMap(pml);
+        String targetFile = "./each_sido_cnt.txt";
+        populationStatistic.createAFile(targetFile);
+        List<String> cntResult = new ArrayList<>();
+        for(String key :moveCntMap.keySet()){
+            String s = String.format("key:%s value:%d\n", key, moveCntMap.get(key));
+            cntResult.add(s);
         }
-        System.out.println("sidoCodes = " + sidoCodes);
-
+        populationStatistic.write(cntResult, targetFile);
     }
 }

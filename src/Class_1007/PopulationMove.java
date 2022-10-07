@@ -8,6 +8,8 @@ public class PopulationMove {
     public PopulationMove(int fromSido, int toSido) {
         this.fromSido = fromSido; //전출
         this.toSido = toSido;     //전입
+
+
     }
 
     //getter추가
