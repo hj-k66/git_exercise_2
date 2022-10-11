@@ -1,7 +1,7 @@
 package week4.algorithm;
 
 public class SumofDigit {
-    public int solution(int n) {
+    public int solutionB(int n) {
         String s = String.valueOf(n);
         int answer = 0;
         for(int i = 0; i < s.length(); i++){
@@ -9,6 +9,17 @@ public class SumofDigit {
         }
         return answer;
     }
+
+    public int solution(int n){
+        //%연산 이용
+        int answer = 0;
+        while(n>0){
+            answer += n%10;
+            n/=10;
+        }
+        return answer;
+    }
+
     public static void main(String[] args) {
         SumofDigit sumofDigit = new SumofDigit();
         int result1 = sumofDigit.solution(123);
