@@ -3,10 +3,16 @@ package week5.algorithm;
 import java.util.Scanner;
 
 public class RightTriangle {
-    public void NRigntTriangle(int n){
+    private String letter;
+
+    public RightTriangle(String letter) {
+        this.letter = letter;
+    }
+
+    public void NRigntTriangle(int n, String letter){
         for(int i = 0; i < n; i++){
             for(int j = 0; j < i+1; j++){
-                System.out.printf("* ");
+                System.out.printf(letter + " ");
             }
             System.out.println();
         }
@@ -22,8 +28,8 @@ public class RightTriangle {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
-        RightTriangle rightTriangle = new RightTriangle();
-        rightTriangle.NRigntTriangle(n);
+        RightTriangle rightTriangle = new RightTriangle("#");
+        rightTriangle.NRigntTriangle(n, rightTriangle.letter);
 
     }
 }
