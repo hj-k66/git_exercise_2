@@ -11,12 +11,18 @@ public class SquareStar {
             System.out.println();
         }
     }
+    void printSquareByRepeat(int n){
+        for(int i = 0; i < n;i++){
+            System.out.println("*".repeat(n));
+        }
+    }
 
     public static void main(String[] args) {
-        SquareStar squareStar = new SquareStar();
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        squareStar.printSquareMatrix(n);
 
+        SquareStar squareStar = new SquareStar();
+//        squareStar.printSquareMatrix(n);
+        squareStar.printSquareByRepeat(n);
     }
 }
